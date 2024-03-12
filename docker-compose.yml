@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  scrapy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./nikon:/app
+    command: scrapy shell
+    depends_on:
+      - splash
+
+  splash:
+    image: scrapinghub/splash
+    ports:
+      - "8050:8050"
